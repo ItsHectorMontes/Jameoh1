@@ -7,7 +7,6 @@ import * as firebase from "firebase";
 import { validateEmail } from "../../utils/validations";
 import Loading from "../Loading";
 import { useSelector, useDispatch } from 'react-redux';
-const dispatch = useDispatch()
 
 
 export default function LoginForm(props) {
@@ -15,7 +14,8 @@ export default function LoginForm(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue());
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigation();
+  const sessiontype = useSelector(state => state.userdata.sessiontype)
+  const dispatch = useDispatch()
 
   const onChange = (e, type) => {
     setFormData({ ...formData, [type]: e.nativeEvent.text });
