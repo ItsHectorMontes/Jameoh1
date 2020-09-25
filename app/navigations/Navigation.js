@@ -68,9 +68,9 @@ export default function Navigation() {
           <Login.Navigator headerMode='none'                
           initialRouteName="Userguest">
             <Login.Screen name="Userguest" component = {UserGuest}/>
-            <Login.Screen name="Login" component = {LoginForm}/>
+            <Login.Screen name="login" component = {LoginForm}/>
             <Login.Screen name="LoginFacebook" component={LoginFacebook}/>
-            <Login.Screen name="Register" component={RegisterForm}/>
+            <Login.Screen name="register" component={RegisterForm}/>
           </Login.Navigator>
         </NavigationContainer>
       )

@@ -42,7 +42,7 @@ export default function LoginForm(props) {
         });
     }
   };
-d
+
   return (
     <View style={styles.formContainer}>
       <Input
