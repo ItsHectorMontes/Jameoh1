@@ -6,6 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 import * as firebase from "firebase";
 import { validateEmail } from "../../utils/validations";
 import Loading from "../Loading";
+import { useSelector, useDispatch } from 'react-redux';
+const dispatch = useDispatch()
 
 
 export default function LoginForm(props) {
@@ -31,7 +33,8 @@ export default function LoginForm(props) {
         .signInWithEmailAndPassword(formData.email, formData.password)
         .then(() => {
           setLoading(false);
-          navigation.navigate("restaurants");
+          dispatch({type : 'OnUserSession', payload: {sessiontype : 2, userdata : {
+            username: 'invitado', email : 'Bienvenido'}}})
         })
         .catch(() => {
           setLoading(false);
@@ -39,7 +42,7 @@ export default function LoginForm(props) {
         });
     }
   };
-
+d
   return (
     <View style={styles.formContainer}>
       <Input
