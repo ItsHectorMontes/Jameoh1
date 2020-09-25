@@ -22,6 +22,7 @@ export default function UserLogged() {
       const user = await firebase.auth().currentUser;
       setUserInfo(user);
       
+      
 
     })();
     setRealoadUserInfo(false);
@@ -61,6 +62,8 @@ const styles = StyleSheet.create({
   viewUserInfo: {
     minHeight: "100%",
     backgroundColor: "#f2f2f2",
+    marginTop:60,
+    
   },
   btnCloseSession: {
     marginTop: 30,

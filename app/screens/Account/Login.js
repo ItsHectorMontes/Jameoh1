@@ -24,6 +24,17 @@ export default function Login() {
         <CreateAccount />
       </View>
       <Divider style={styles.divider} />
+      <Text style={styles.textointro}
+        onPress={() => Linking.openURL('http://google.com')}
+        >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
+      <Image
+       style={styles.footer}
+      source={require("../../../assets/img/footer.png")}
+      
+      >
+
+      </Image>
+
      
       <Toast ref={toastRef} position="center" opacity={0.9} />
     </ScrollView>
@@ -41,12 +52,11 @@ function CreateAccount() {
         onPress={() => navigation.navigate("register")}
       >
         Regístrate
-      </Text>
-      <Text style={styles.textointro}
-        onPress={() => Linking.openURL('http://google.com')}
-        >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
-      
+      </Text>       
     </Text>
+     
+   
+    
     
     
     
@@ -76,5 +86,17 @@ const styles = StyleSheet.create({
   divider: {
     backgroundColor: "#541204",
     margin: 40,
+  },
+  textointro:{
+    textAlign: 'center',
+    paddingBottom:20,
+    fontWeight: 'bold',
+    color:"#541204",
+
+  },
+  footer:{
+    width:"20%",
+    
+
   },
 });

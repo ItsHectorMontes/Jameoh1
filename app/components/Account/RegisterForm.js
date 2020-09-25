@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View,Text,Linking } from "react-native";
 import { Input, Icon, Button } from "react-native-elements";
 import Loading from "../Loading";
 import { validateEmail } from "../../utils/validations";
@@ -114,6 +114,10 @@ export default function RegisterForm(props) {
         
        
       />
+       <Text style={styles.textointro}
+        onPress={() => Linking.openURL('http://google.com')}
+        >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
+      
       <Loading isVisible={loading} text="Creando cuenta" />
     </View>
   );
@@ -154,5 +158,13 @@ const styles = StyleSheet.create({
   },
   iconRight: {
     color: "#c1c1c1",
+  },
+  textointro:{
+    paddingTop:35,
+    textAlign: 'center',
+    paddingBottom:20,
+    fontWeight: 'bold',
+    color:"#541204",
+
   },
 });
