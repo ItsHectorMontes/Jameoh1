@@ -8,7 +8,6 @@ import { validateEmail } from "../../utils/validations";
 import Loading from "../Loading";
 import { useSelector, useDispatch } from 'react-redux';
 
-
 export default function LoginForm(props) {
   const { toastRef } = props;
   const [showPassword, setShowPassword] = useState(false);
