@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   textointro:{
     textAlign: 'center',
-    paddingBottom:15,
+    paddingBottom:10,
     fontWeight: 'bold',
     color:"#541204",
 
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   footer:{
     marginTop: 30,
     width:"140%",
-    height: 500,
+    height: 600,
     borderTopStartRadius: 250,
     borderTopEndRadius : 250 ,
     backgroundColor: '#FDD367'  
