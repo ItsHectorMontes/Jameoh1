@@ -20,7 +20,9 @@ export default function Register() {
       
         <RegisterForm toastRef={toastRef} />
       </View>
-     
+      <View style={styles.footercontainer}>
+        <View style={styles.footer}/> 
+      </View>
       <Toast ref={toastRef} position="center" opacity={0.9} />
     </KeyboardAwareScrollView>
   );
@@ -38,4 +40,16 @@ const styles = StyleSheet.create({
     marginRight: 40,
     marginLeft: 40,
   },
+  footercontainer: {
+    width: '100%',
+    alignItems: 'center'
+  },
+  footer:{
+    marginTop: 30,
+    width:"140%",
+    height: 600,
+    borderTopStartRadius: 250,
+    borderTopEndRadius : 250 ,
+    backgroundColor: '#FDD367'  
+  }
 });
