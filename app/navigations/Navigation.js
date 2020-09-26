@@ -15,9 +15,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as firebase from "firebase";
 
 import  UserGuest from '../screens/Account/UserGuest';
-import LoginForm from '../components/Account/LoginForm';
+import Login from '../screens/Account/Login';
 import LoginFacebook from '../components/Account/LoginFacebook';
-import RegisterForm from '../components/Account/RegisterForm';
+import Register from '../screens/Account/Register';
 import { View } from "react-native";
 import { render } from "react-dom";
 
@@ -25,7 +25,7 @@ import { render } from "react-dom";
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createStackNavigator();
-const Login = createStackNavigator()
+const Loginstack = createStackNavigator()
 
 
 
@@ -65,13 +65,13 @@ export default function Navigation() {
     } if (sessiontype == 1){
       return (
         <NavigationContainer>
-          <Login.Navigator headerMode='none'                
+          <Loginstack.Navigator headerMode='none'                
           initialRouteName="Userguest">
-            <Login.Screen name="Userguest" component = {UserGuest}/>
-            <Login.Screen name="login" component = {LoginForm}/>
-            <Login.Screen name="LoginFacebook" component={LoginFacebook}/>
-            <Login.Screen name="register" component={RegisterForm}/>
-          </Login.Navigator>
+            <Loginstack.Screen name="Userguest" component = {UserGuest}/>
+            <Loginstack.Screen name="login" component = {Login}/>
+            <Loginstack.Screen name="LoginFacebook" component={LoginFacebook}/>
+            <Loginstack.Screen name="register" component={Register}/>
+          </Loginstack.Navigator>
         </NavigationContainer>
       )
     } else if (sessiontype == 2){

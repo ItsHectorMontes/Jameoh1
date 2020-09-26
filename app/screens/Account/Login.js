@@ -10,7 +10,7 @@ export default function Login() {
   const toastRef = useRef();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image
         source={require("../../../assets/img/register.png")}
         resizeMode="contain"
@@ -34,10 +34,9 @@ export default function Login() {
       >
 
       </Image>
-
      
       <Toast ref={toastRef} position="center" opacity={0.9} />
-    </View>
+    </ScrollView >
   );
 }
 
@@ -95,9 +94,9 @@ const styles = StyleSheet.create({
 
   },
   footer:{
-    width:"20%",    
-  },
-  container: {
-    flex: 1
+    width:"100%",
+    height: 200,
+    borderTopStartRadius: 40,
+    borderTopEndRadius : 40    
   }
 });
