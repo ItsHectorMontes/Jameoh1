@@ -61,12 +61,12 @@ const styles = StyleSheet.create({
   logo: {
     width: "100%",
     height: 130,
-    marginTop: 80,
+    marginTop: 50,
     marginBottom:20,
   },
   viewContainer: {
-    marginRight: 40,
-    marginLeft: 40,
+    marginRight: 30,
+    marginLeft: 30,
   },
   textRegister: {
     marginTop: 15,
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
   },
   footer:{
     marginTop: 30,
-    width:"100%",
-    height: 100,
+    width:"120%",
+    height: 200,
     borderTopStartRadius: 100,
     borderTopEndRadius : 100 ,
     backgroundColor: '#FDD367'  
