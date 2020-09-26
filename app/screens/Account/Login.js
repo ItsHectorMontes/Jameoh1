@@ -10,7 +10,7 @@ export default function Login() {
   const toastRef = useRef();
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Image
         source={require("../../../assets/img/register.png")}
         resizeMode="contain"
@@ -27,16 +27,11 @@ export default function Login() {
       <Text style={styles.textointro}
         onPress={() => Linking.openURL('http://google.com')}
         >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
-      <Image
-       style={styles.footer}
-      source={require("../../../assets/img/footer.png")}
-      
-      >
+      <View style={styles.footer}> 
 
-      </Image>
-     
+      </View>
       <Toast ref={toastRef} position="center" opacity={0.9} />
-    </ScrollView >
+    </View >
   );
 }
 
@@ -84,19 +79,24 @@ const styles = StyleSheet.create({
   },
   divider: {
     backgroundColor: "#541204",
-    margin: 40,
+    margin: 30,
   },
   textointro:{
     textAlign: 'center',
-    paddingBottom:20,
+    paddingBottom:15,
     fontWeight: 'bold',
     color:"#541204",
 
   },
   footer:{
+    marginTop: 30,
     width:"100%",
-    height: 200,
-    borderTopStartRadius: 40,
-    borderTopEndRadius : 40    
+    height: 100,
+    borderTopStartRadius: 100,
+    borderTopEndRadius : 100 ,
+    backgroundColor: '#FDD367'  
+  },
+  container: {
+    alignItems: 'center'
   }
 });

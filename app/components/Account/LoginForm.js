@@ -78,8 +78,7 @@ export default function LoginForm(props) {
         buttonStyle={styles.btnLogin}
         onPress={onSubmit}
       />
-      <Loading isVisible={loading} text="Iniciando sesión" />
-      
+      <Loading isVisible={loading} text="Iniciando sesión" />  
     </View>
   );
 }
