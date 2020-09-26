@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
   },
   footer:{
     marginTop: 30,
-    width:"120%",
-    height: 380,
+    width:"140%",
+    height: 500,
     borderTopStartRadius: 250,
     borderTopEndRadius : 250 ,
     backgroundColor: '#FDD367'  
