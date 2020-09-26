@@ -27,8 +27,8 @@ export default function Login() {
       <Text style={styles.textointro}
         onPress={() => Linking.openURL('http://google.com')}
         >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
-      <View style={styles.footer}> 
-
+      <View style={styles.footercontainer}>
+        <View style={styles.footer}/> 
       </View>
       <Toast ref={toastRef} position="center" opacity={0.9} />
     </View >
@@ -88,15 +88,16 @@ const styles = StyleSheet.create({
     color:"#541204",
 
   },
+  footercontainer: {
+    width: '100%',
+    alignItems: 'center'
+  },
   footer:{
     marginTop: 30,
     width:"120%",
-    height: 300,
-    borderTopStartRadius: 230,
-    borderTopEndRadius : 230 ,
+    height: 380,
+    borderTopStartRadius: 250,
+    borderTopEndRadius : 250 ,
     backgroundColor: '#FDD367'  
-  },
-  container: {
-    alignItems: 'center'
   }
 });
