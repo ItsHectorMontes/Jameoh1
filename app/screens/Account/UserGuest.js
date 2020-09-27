@@ -2,12 +2,12 @@ import React from "react";
 import { StyleSheet, View, Text, Image,Linking, ImageBackground} from "react-native";
 import { Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import { Content, Header, Container } from 'native-base'
+import { Container } from 'native-base'
 export default function UserGuest() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.viewBody}>
+    <Container>
       <ImageBackground
         source={require("../../../assets/img/user-guest.png")}
         style={styles.image}>
@@ -32,14 +32,12 @@ export default function UserGuest() {
           >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
         </View>
       </ImageBackground>   
-    </View>
+
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  viewBody: {
-    flex: 1
-  },
   image: {
     paddingTop: 70,
     flex: 1,

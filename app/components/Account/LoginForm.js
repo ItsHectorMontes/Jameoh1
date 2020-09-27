@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View,Text,Linking } from "react-native";
-import { Input, Icon, Button } from "react-native-elements";
+import { StyleSheet, View,Linking } from "react-native";
+import { Input, Icon} from "react-native-elements";
 import { isEmpty } from "lodash";
-import { useNavigation } from "@react-navigation/native";
 import * as firebase from "firebase";
 import { validateEmail } from "../../utils/validations";
 import Loading from "../Loading";
 import { useSelector, useDispatch } from 'react-redux';
-
+import { Button,Text} from 'native-base'
 export default function LoginForm(props) {
   const { toastRef } = props;
   const [showPassword, setShowPassword] = useState(false);
@@ -71,12 +70,14 @@ export default function LoginForm(props) {
           />
         }
       />
-      <Button
-        title="Iniciar sesión"
-        containerStyle={styles.btnContainerLogin}
-        buttonStyle={styles.btnLogin}
-        onPress={onSubmit}
-      />
+      <View style={styles.btncontainer}>
+      <Button rounded style={styles.btnLogin}
+      onPress={onSubmit}>
+        <Text>
+          Iniciar Sesión
+        </Text>
+      </Button>
+      </View>
       <Loading isVisible={loading} text="Iniciando sesión" />  
     </View>
   );
@@ -99,22 +100,11 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 20,
   },
-  btnContainerLogin: {
-    marginTop: 20,
-    width: "45%",
-    marginRight:40,
-    marginLeft:40,
-    marginTop:10,
-    paddingTop:20,
-    paddingBottom:20,    
-    borderRadius:10, 
+  btncontainer: {
+    marginVertical: 15
   },
   btnLogin: {
     backgroundColor: "#541204",
-    elevation: 8,    
-    borderRadius: 40,
-    paddingVertical: 15,
-    paddingHorizontal: 17,
   },
   iconRight: {
     color: "#c1c1c1",

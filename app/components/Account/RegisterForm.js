@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View,Text,Linking } from "react-native";
-import { Input, Icon, Button } from "react-native-elements";
+import { StyleSheet, View, Linking } from "react-native";
+import { Input, Icon } from "react-native-elements";
 import Loading from "../Loading";
 import { validateEmail } from "../../utils/validations";
 import { size, isEmpty } from "lodash";
 import * as firebase from "firebase";
 import { useNavigation } from "@react-navigation/native";
+import { Button,Text} from 'native-base';
 
 export default function RegisterForm(props) {
   const { toastRef } = props;
@@ -106,6 +107,15 @@ export default function RegisterForm(props) {
           />
         }
       />
+
+      <View style={styles.btncontainer}>
+        <Button rounded style={styles.btnLogin}
+        onPress={onSubmit}>
+          <Text>
+            Crear Cuenta
+          </Text>
+        </Button>
+      </View>
       <Button
         title="Crear Cuenta"        
         containerStyle={styles.btnContainerRegister}
@@ -144,17 +154,11 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 20,
   },
-  btnContainerRegister: {
-    marginTop: 30,
-    width: "45%",
-    
+  btncontainer: {
+    marginTop: 40
   },
-  btnRegister: {
+  btnLogin: {
     backgroundColor: "#541204",
-    elevation: 8,    
-    borderRadius: 40,
-    paddingVertical: 15,
-    paddingHorizontal: 17,
   },
   iconRight: {
     color: "#c1c1c1",

@@ -4,27 +4,30 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Toast from "react-native-easy-toast";
 import RegisterForm from "../../components/Account/RegisterForm";
 import LoginFacebook from "../../components/Account/LoginFacebook";
+import {Container, Content} from 'native-base'
 
 export default function Register() {
   const toastRef = useRef();
 
   return (
-    <KeyboardAwareScrollView>
-      <Image
-        source={require("../../../assets/img/register23.png")}
-        resizeMode="contain"
-        style={styles.logo}
-      />
-      
-      <View style={styles.viewForm}>
-      
-        <RegisterForm toastRef={toastRef} />
-      </View>
-      <View style={styles.footercontainer}>
-        <View style={styles.footer}/> 
-      </View>
+    <Container>
+      <Content>
+        <Image
+          source={require("../../../assets/img/register23.png")}
+          resizeMode="contain"
+          style={styles.logo}
+        />
+        
+        <View style={styles.viewForm}>
+        
+          <RegisterForm toastRef={toastRef} />
+        </View>
+        <View style={styles.footercontainer}>
+          <View style={styles.footer}/> 
+        </View>
+      </Content>
       <Toast ref={toastRef} position="center" opacity={0.9} />
-    </KeyboardAwareScrollView>
+    </Container>
   );
 }
 
