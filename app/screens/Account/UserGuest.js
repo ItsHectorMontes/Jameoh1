@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   viewBody: {
     
     flex: 1, 
-    marginTop:60,
+    marginTop:30,
     
     
   },

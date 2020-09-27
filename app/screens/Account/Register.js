@@ -37,19 +37,19 @@ const styles = StyleSheet.create({
 
   },
   viewForm: {
-    marginRight: 40,
-    marginLeft: 40,
+    marginRight: 20,
+    marginLeft: 20,
   },
   footercontainer: {
     width: '100%',
     alignItems: 'center'
   },
   footer:{
-    marginTop: 30,
-    width:"140%",
-    height: 600,
-    borderTopStartRadius: 250,
-    borderTopEndRadius : 250 ,
-    backgroundColor: '#FDD367'  
+    marginTop: 10,
+    width:"110%",
+    height: 120,
+    borderTopStartRadius: 270,
+    borderTopEndRadius : 270 ,
+    backgroundColor: '#FDD367',
   }
 });
