@@ -38,15 +38,7 @@ export default function UserGuest() {
 
 const styles = StyleSheet.create({
   viewBody: {
-<<<<<<< HEAD
-    
-    flex: 1, 
-    marginTop:30,
-    
-    
-=======
     flex: 1
->>>>>>> 0276dc72d589e21c8cc9706ad37101d3ad8931b6
   },
   image: {
     paddingTop: 70,
@@ -104,3 +96,4 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   }
 });
+
