@@ -5,8 +5,8 @@ import Loading from "../Loading";
 import { validateEmail } from "../../utils/validations";
 import { size, isEmpty } from "lodash";
 import * as firebase from "firebase";
-import { useNavigation } from "@react-navigation/native";
 import { Button,Text} from 'native-base';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function RegisterForm(props) {
   const { toastRef } = props;
@@ -14,7 +14,7 @@ export default function RegisterForm(props) {
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [formData, setFormData] = useState(defaultFormValue());
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigation();
+  const dispatch = useDispatch()
 
   const onSubmit = () => {
     if (
@@ -38,7 +38,8 @@ export default function RegisterForm(props) {
         .createUserWithEmailAndPassword(formData.email, formData.password)
         .then(() => {
           setLoading(false);
-          navigation.navigate("restaurants");
+          dispatch({type : 'OnUserSession', payload: {sessiontype : 2, userdata : {
+            username: 'invitado', email : 'Bienvenido'}}})
         })
         .catch(() => {
           setLoading(false);

@@ -44,12 +44,12 @@ export default function Navigation() {
   const dispatch = useDispatch()
   
   useEffect(() => {
-    console.log(sessiontype)
     firebase.auth().onAuthStateChanged((user) => {
       if(!user){
         dispatch({type : 'OnUserSession', payload: {sessiontype : 1, userdata : {
           username: 'invitado', email : 'Bienvenido'}}})
       } else {
+        console.log(user)
         dispatch({type : 'OnUserSession', payload: {sessiontype : 2, userdata : {
           username: 'invitado', email : 'Bienvenido'}}})
       }
