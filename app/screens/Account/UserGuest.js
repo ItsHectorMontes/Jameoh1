@@ -1,58 +1,48 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, Text, Image,Linking} from "react-native";
+import { StyleSheet, View, Text, Image,Linking, ImageBackground} from "react-native";
 import { Button } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-
+import { Content, Header, Container } from 'native-base'
 export default function UserGuest() {
   const navigation = useNavigation();
 
   return (
-    <View centerContent={true} style={styles.viewBody}>
-      <Image
+    <View style={styles.viewBody}>
+      <ImageBackground
         source={require("../../../assets/img/user-guest.png")}
-        style={styles.image}
-      ></Image>      
-      
-        <Button
-          title="Iniciar Sesión"
-          buttonStyle={styles.btnStyle}
-          containerStyle={styles.btnContainer}
-          onPress={() => navigation.navigate("login")}
-        />
-        <Button
-          title="Crear Cuenta"
-          buttonStyle={styles.btnStyle}
-          containerStyle={styles.btnContainerr}
-          onPress={() => navigation.navigate("register")}
-        />
-        <Text style={styles.textointro}
-        onPress={() => Linking.openURL('http://google.com')}
-        >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
-
-
-  
-
-        
-      
+        style={styles.image}>
+        <View style={styles.first}>
+          <Button
+            title="Iniciar Sesión"
+            buttonStyle={styles.btnStyle}
+            containerStyle={styles.btnContainer}
+            onPress={() => navigation.navigate("login")}
+          />
+          <Button
+            title="Crear Cuenta"
+            buttonStyle={styles.btnStyle}
+            containerStyle={styles.btnContainerr}
+            onPress={() => navigation.navigate("register")}
+          />
+            
+        </View>
+        <View style={styles.second}>
+          <Text style={styles.textointro}
+          onPress={() => Linking.openURL('http://google.com')}
+          >Consulte nuestro aviso de privacidad, {"\n"}terminos y condiciones</Text>
+        </View>
+      </ImageBackground>   
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   viewBody: {
-    
-    flex: 1, 
-    marginTop:60,
-    
-    
+    flex: 1
   },
   image: {
-    
+    paddingTop: 70,
     flex: 1,
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-    width: null,
-    marginBottom:-90,
 
   },
   title: {
@@ -79,22 +69,13 @@ const styles = StyleSheet.create({
     
   },
   btnContainer: {
-    
-    margin: 30,
-    position: "absolute",
-    top: -10,
-    alignSelf:"flex-start",
+    marginEnd: 15,
        
     
   },
   btnContainerr: {
-    
-    
-    position: "absolute",
-    top: 21,
-    right:20,    
-    
-    alignSelf:"flex-end",   
+    marginStart: 15
+
     
   },
   textointro:{
@@ -104,4 +85,14 @@ const styles = StyleSheet.create({
     color:"#541204",
 
   },
+  first: {
+    flex : 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  second: {
+    flex: 1, 
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  }
 });

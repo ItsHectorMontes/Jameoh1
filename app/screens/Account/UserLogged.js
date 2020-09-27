@@ -8,6 +8,7 @@ import InfoUser from "../../components/Account/InfoUser";
 import AccountOptions from "../../components/Account/AccountOptions";
 import { useNavigation } from "@react-navigation/native";
 import Navigation from "../../navigations/Navigation";
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function UserLogged() {
   const [userInfo, setUserInfo] = useState(null);
@@ -15,6 +16,7 @@ export default function UserLogged() {
   const [loadingText, setLoadingText] = useState("");
   const [realoadUserInfo, setRealoadUserInfo] = useState(false);
   const toastRef = useRef();
+  const dispatch = useDispatch()
 
 
   useEffect(() => {
@@ -27,6 +29,13 @@ export default function UserLogged() {
     })();
     setRealoadUserInfo(false);
   }, [realoadUserInfo]);
+
+  const logout = async() =>{
+    await firebase.auth().signOut().then( function(){
+    dispatch({type : 'OnUserSession', payload: {sessiontype : 1, userdata : {
+      username: 'invitado', email : 'Bienvenido'}}})
+    })
+  }
 
   return (
     <View style={styles.viewUserInfo}>
@@ -49,7 +58,7 @@ export default function UserLogged() {
         title="Cerrar sesión"
         buttonStyle={styles.btnCloseSession}
         titleStyle={styles.btnCloseSessionText}
-        onPress={() => firebase.auth().signOut()}
+        onPress={() => logout()}
       />
       <Toast ref={toastRef} position="center" opacity={0.9} />
       <Loading text={loadingText} isVisible={loading} />
