@@ -25,6 +25,7 @@ export default function UserLogged() {
       setUserInfo(user);
       
       
+      
 
     })();
     setRealoadUserInfo(false);
