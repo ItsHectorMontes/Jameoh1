@@ -6,8 +6,6 @@ import * as firebase from "firebase";
 import Loading from "../../components/Loading";
 import InfoUser from "../../components/Account/InfoUser";
 import AccountOptions from "../../components/Account/AccountOptions";
-import { useNavigation } from "@react-navigation/native";
-import Navigation from "../../navigations/Navigation";
 import { useSelector, useDispatch } from 'react-redux';
 
 export default function UserLogged() {

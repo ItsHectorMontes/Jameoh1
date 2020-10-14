@@ -7,11 +7,6 @@ const DATA = [
     title: "pollos, carnes y parrillas",
     url: '../../../assets/categorias/1.png',    
   },
-  
-
-
-
-
 ];
 
 const Item = ({ item, onPress, style }) => (
@@ -19,25 +14,23 @@ const Item = ({ item, onPress, style }) => (
     <Image
         style={styles.tinyLogo}
         source={require('../../../assets/categorias/1.png')}          
-        
       />     
-    
-    
-    
   </TouchableOpacity>
 );
 
-const App = () => {
-  const [selectedId, setSelectedId] = useState(null);
-
+const App = ({setSelectedId}) => {
   const renderItem = ({ item }) => {
-    
-
     return (
       <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
-        
+        onPress={() => {
+          const id = item.title.split(' ')
+            .map(res => res.toLowerCase())
+            .join('')
+            .split(',')
+            .join('');
+          setSelectedId(id);
+        }}      
       />
     );  
   };
@@ -49,7 +42,6 @@ const App = () => {
         data={DATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        extraData={selectedId}
       />
     </SafeAreaView>
   );

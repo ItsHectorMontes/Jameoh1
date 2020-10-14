@@ -1,39 +1,35 @@
 
-import React, { Component } from "react";
-import { Platform, View, Text, StyleSheet, SafeAreaView } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React, {useState, useEffect} from "react";
 import Promotions from "../screens/Promotions";
 import { dummyData } from"../data/Data";
+import * as firebase from 'firebase';
 import { ScrollView } from "react-native-gesture-handler";
 
-
-
-
-const Stack = createStackNavigator();
-
 export default function PromotionsStack() {
+    const [promotionsData, setPromotionsData] = useState([]);
     
-        return (
-        <ScrollView>
-            <Text>pollos y parrillas</Text>
-            <Promotions data={dummyData}/>
-            <Text>pizza</Text>
-            <Promotions data={dummyData}/>
-            <Text>pescasdos</Text>
-            <Promotions data={dummyData}/>
-            <Promotions data={dummyData}/>
-            <Promotions data={dummyData}/>
-            <Promotions data={dummyData}/>
-            <Promotions data={dummyData}/>
-            <Promotions data={dummyData}/>
-            <Promotions data={dummyData}/>
-            
-        </ScrollView>
-        
-           
-        );    
-
+    useEffect(() => {
+        (()=>{
+            firebase.firestore().collection('restaurants').get()
+                .then(respuesta => {
+                    let lista = []
+                    respuesta.docs.forEach(restaurant => {
+                        const category = restaurant.data().category;
+                        lista = lista.concat({
+                            category: category,
+                            promotions: restaurant.data().images,
+                        });
+                    });
+                    setPromotionsData(lista);
+                });
+        })()
+    },[])
     
-       
-    
+    return (
+        <ScrollView style={{height: '100%', flex: 1}}>
+            {
+                promotionsData.map((item, index)=><Promotions key={index*Math.random()} data={item.promotions} category={item.category} />)
+            }
+        </ScrollView>           
+    );    
 }
