@@ -41,7 +41,7 @@ export default function ListRestaurants(props) {
 
 function Restaurant(props) {
   const { selectedId, restaurant, navigation } = props;
-  const { id, images, name, address, description, category } = restaurant.item;
+  const { id, images, name, address, description, category, destacado } = restaurant.item;
   const imageRestaurant = images ? images[0] : null;
   const goRestaurant = () => {
     navigation.navigate("restaurant", {
@@ -54,6 +54,14 @@ function Restaurant(props) {
   const RestaurantListItem = () => {
     return (
       <TouchableOpacity onPress={goRestaurant}>
+        {
+          destacado 
+          ? (
+          <View style={styles.destacado}>
+            <Text>Destacado</Text>
+          </View>)
+          : null
+        }
         <View style={styles.viewRestaurant}>
           <View style={styles.viewRestaurantImage}>
             <Image
@@ -113,6 +121,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: "center",
     
+  },
+  destacado: {
+    position: 'absolute',
+    top: 10,
+    right: 2,
+    backgroundColor: '#e4df32',
+    paddingHorizontal: 10,
+    borderRadius: 50,
   },
   viewRestaurant: {
     flexDirection: "row",
