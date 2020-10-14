@@ -22,7 +22,7 @@ export default function ListRestaurants(props) {
         <FlatList
           data={restaurants}
           renderItem={(restaurant) => (
-            <Restaurant restaurant={restaurant} navigation={navigation} />
+            <Restaurant restaurant={restaurant} selectedId={props.selectedId} navigation={navigation} />
           )}
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={0.5}
@@ -40,10 +40,9 @@ export default function ListRestaurants(props) {
 }
 
 function Restaurant(props) {
-  const { restaurant, navigation } = props;
-  const { id, images, name, address, description } = restaurant.item;
+  const { selectedId, restaurant, navigation } = props;
+  const { id, images, name, address, description, category } = restaurant.item;
   const imageRestaurant = images ? images[0] : null;
-
   const goRestaurant = () => {
     navigation.navigate("restaurant", {
       id,
@@ -51,31 +50,43 @@ function Restaurant(props) {
     });
   };
 
-  return (
-    <TouchableOpacity onPress={goRestaurant}>
-      <View style={styles.viewRestaurant}>
-        <View style={styles.viewRestaurantImage}>
-          <Image
-            resizeMode="cover"
-            PlaceholderContent={<ActivityIndicator color="fff" />}
-            source={
-              imageRestaurant
-                ? { uri: imageRestaurant }
-                : require("../../../assets/img/no-image.png")
-            }
-            style={styles.imageRestaurant}
-          />
+
+  const RestaurantListItem = () => {
+    return (
+      <TouchableOpacity onPress={goRestaurant}>
+        <View style={styles.viewRestaurant}>
+          <View style={styles.viewRestaurantImage}>
+            <Image
+              resizeMode="cover"
+              scale={0.5}
+              PlaceholderContent={<ActivityIndicator color="fff" />}
+              source={
+                imageRestaurant
+                  ? { uri: imageRestaurant }
+                  : require("../../../assets/img/no-image.png")
+              }
+              style={styles.imageRestaurant}
+            />
+          </View>
+          <View>
+            <Text style={styles.restaurantName}>{name}</Text>
+            <Text style={styles.restaurantAddress}>{address}</Text>
+            <Text style={styles.restaurantDescription}>
+              {description.substr(0, 60)}...
+            </Text>
+          </View>
         </View>
-        <View>
-          <Text style={styles.restaurantName}>{name}</Text>
-          <Text style={styles.restaurantAddress}>{address}</Text>
-          <Text style={styles.restaurantDescription}>
-            {description.substr(0, 60)}...
-          </Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
+      </TouchableOpacity>
+    );
+  }
+  if (selectedId) {
+    if (selectedId === category) {
+      return <RestaurantListItem />
+    }
+    return null; 
+  } else {
+    return <RestaurantListItem />
+  }
 }
 
 function FooterList(props) {

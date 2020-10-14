@@ -4,7 +4,7 @@ import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity,I
 const DATA = [
   {
     id: "3",
-    title: "Pescado y Mariscos",
+    title: "Pizzas y pastas",
     url: '../../../assets/categorias/3.png',  
   },
   
@@ -26,16 +26,21 @@ const Item = ({ item, onPress, style }) => (
   </TouchableOpacity>
 );
 
-const App = () => {
-  const [selectedId, setSelectedId] = useState(null);
-
+const App = ({setSelectedId}) => {
   const renderItem = ({ item }) => {
     
 
     return (
       <Item
         item={item}
-        onPress={() => setSelectedId(item.id)}
+        onPress={() => {
+          const id = item.title.split(' ')
+            .map(res => res.toLowerCase())
+            .join('')
+            .split(',')
+            .join('');
+          setSelectedId(id);
+        }}      
       />
     );  
   };
@@ -47,7 +52,6 @@ const App = () => {
         data={DATA}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        extraData={selectedId}
       />
     </SafeAreaView>
   );

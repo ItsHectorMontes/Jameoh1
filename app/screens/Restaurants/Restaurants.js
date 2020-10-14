@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
-import { StyleSheet, View, Text, ScrollView, Dimensions, SectionList, SafeAreaView, KeyboardAwareScrollView, ViewBase } from "react-native";
+import { StyleSheet, View, ScrollView, Dimensions} from "react-native";
 
 import { Icon } from "react-native-elements";
 import { useFocusEffect } from "@react-navigation/native";
@@ -21,6 +21,7 @@ import UserLoggedInfo from "../Account/UserLoggedInfo";
 //search
 import Search from "../Search";
 //categori
+import AllCategories from "../../components/Categories/AllCategories";
 import Category1 from "../../components/Categories/Category1";
 import Category2 from "../../components/Categories/Category2";
 import Category3 from "../../components/Categories/Category3";
@@ -45,6 +46,7 @@ export default function Restaurants(props) {
   const [startRestaurants, setStartRestaurants] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const limitRestaurants = 10;
+  const [selectedId, setSelectedId] = useState(null);
   //user
   //
 
@@ -109,39 +111,26 @@ export default function Restaurants(props) {
   };
 
   return (
-
-
-
-    <ScrollView style={styles.viewBody}>
-
-      <UserLoggedInfo
-
-      />
-      <ScrollView
-      horizontal
-      >
-      <Category1 />
-      <Category2 />
-      <Category3 />
-      <Category4 />
-      <Category5 />
-      <Category6 />
-      <Category7 />
-      <Category8 />
-      <Category9 />
-
-
+    <ScrollView style={styles.viewBody} showsVerticalScrollIndicator={false}>
+      <UserLoggedInfo/>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <AllCategories setSelectedId={()=>setSelectedId(null)} />
+        <Category1 setSelectedId={setSelectedId}/>
+        <Category2 setSelectedId={setSelectedId}/>
+        <Category3 setSelectedId={setSelectedId}/>
+        <Category4 setSelectedId={setSelectedId}/>
+        <Category5 setSelectedId={setSelectedId}/>
+        <Category6 setSelectedId={setSelectedId}/>
+        <Category7 setSelectedId={setSelectedId}/>
+        <Category8 setSelectedId={setSelectedId}/>
+        <Category9 setSelectedId={setSelectedId}/>
       </ScrollView>
-      
-      
-
       <ListRestaurants
         restaurants={restaurants}
         handleLoadMore={handleLoadMore}
         isLoading={isLoading}
+        selectedId={selectedId}
       />
-
-
       {/* {user && (
         <Icon
           reverse
@@ -152,7 +141,7 @@ export default function Restaurants(props) {
           onPress={() => navigation.navigate("add-restaurant")}
         />
       )} */}
-    </ScrollView  >
+    </ScrollView>
   );
 }
 

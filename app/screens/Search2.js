@@ -20,7 +20,6 @@ export default function Search(props) {
         });
     }
   }, [search]);
-
   return (
     <View>
       <SearchBar   
