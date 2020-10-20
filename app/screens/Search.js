@@ -99,6 +99,21 @@ export default function App(){
     setCalloutData(data);
   };
 
+  const filterRestaurants = (restaurant) => {
+    const userSearch = search.toLowerCase();
+      const name = restaurant.name.toLowerCase().replace(/[,.';]/g, '');
+      const description = restaurant.description.toLowerCase().replace(/[,.';]/g, '');
+      let category = restaurant.category; 
+      category = category ? category.toLowerCase() : '';
+      const isInMarkers = markers.filter(marker => marker.name.toLowerCase() === name).length < 1;
+      const canShow = (name.includes(userSearch) 
+                    || description.includes(userSearch) 
+                    || category.includes(userSearch))
+                    && isInMarkers;
+
+      return canShow
+  }
+
     return (
       <View style={{flex: 1}}>
 
@@ -159,18 +174,8 @@ export default function App(){
               {
                 search.trim() !== ''
                   ? restaurants.filter(restaurant => {
-                    const userSearch = search.toLowerCase();
-                    const name = restaurant.name.toLowerCase();
-                    const description = restaurant.description.toLowerCase();
-                    let category = restaurant.category; 
-                    category = category ? category.toLowerCase() : '';
-                    const isInMarkers = markers.filter(marker => marker.name.toLowerCase() === name).length < 1;
-                    const canShow = (name.includes(userSearch) 
-                    || description.includes(userSearch) 
-                    || category.includes(userSearch))
-                    && isInMarkers;
-                    console.log(name, canShow);
-                    return canShow;
+                    
+                    return filterRestaurants(restaurant);
                   }).map(restaurant => (
                     <Marker 
                       key={Math.random()}
