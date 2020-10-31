@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   StyleSheet,
   Text,
@@ -14,13 +14,20 @@ import { useNavigation } from "@react-navigation/native";
 export default function ListRestaurants(props) {
   const { restaurants, handleLoadMore, isLoading } = props;
   const navigation = useNavigation();
+  const [ordenedRestaurantsList, setOrdenedRestaurantsList] = useState([]);
+
+  useEffect(() => {
+    if (restaurants.length > 0 && restaurants.length !== ordenedRestaurantsList.length) {
+      setOrdenedRestaurantsList([...restaurants.filter(rest => rest.destacado), ...restaurants.filter(rest => !rest.destacado)]);
+    }
+  });
 
   return (
     <View>
    
       {size(restaurants) > 0 ? (
         <FlatList
-          data={restaurants}
+          data={ordenedRestaurantsList}
           renderItem={(restaurant) => (
             <Restaurant restaurant={restaurant} selectedId={props.selectedId} navigation={navigation} />
           )}
