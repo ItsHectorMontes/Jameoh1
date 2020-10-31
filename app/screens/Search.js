@@ -65,6 +65,7 @@ async function getRestaurants() {
 
 export default function App(){
   const [location, setLocation] = useState(null);
+  const [region, setRegion] = useState();
   
   const mapTypes = ['standard', 'satellite', 'hybrid'];
   const [mapType, setMapType] = useState(mapTypes[0]);
@@ -97,6 +98,7 @@ export default function App(){
   const showCallout = (data) => {
     setCalloutOpen(true);
     setCalloutData(data);
+    setRegion(data.location);
   };
 
   const filterRestaurants = (restaurant) => {
@@ -110,7 +112,6 @@ export default function App(){
                     || description.includes(userSearch) 
                     || category.includes(userSearch))
                     && isInMarkers;
-
       return canShow
   }
 
@@ -119,7 +120,7 @@ export default function App(){
 
         <View style={styles.searchBox}>
           <Icon name="place" size={28} color="#333" style={{flex: 1, padding: 10}}/>
-          <TextInput placeholder="Buscar..." onChangeText={text=>setSearch(text)} style={{flex: 9, padding: 10}}/>
+          <TextInput placeholder="Buscar restaurante..." onChangeText={text=>setSearch(text)} style={{flex: 9, padding: 10}}/>
         </View>
 
         <TouchableOpacity style={styles.toggleMapBtn} onPress={()=>toggleMapType()}>
@@ -137,6 +138,8 @@ export default function App(){
                 latitudeDelta: 0.009,
                 longitudeDelta: 0.006,
               }}
+              moveOnMarkerPress
+              Region={region ? region : location}
               onUserLocationChange={(e)=>{
                 const eLocation = e.nativeEvent.coordinate;
                 getLocation().then( location => {
@@ -167,6 +170,7 @@ export default function App(){
                   <Marker key={Math.random()} 
                     coordinate={marker.location} 
                     onPress={()=>showCallout(marker)}
+                    onLayout={e=>console.log(e)}
                     >
                       <Icon name="restaurant" style={styles.ourRestaurants} size={24} color="white" />
                   </Marker>))

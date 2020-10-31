@@ -5,8 +5,6 @@ const CarouselItemPromotions = ({ item }) => {
     return (
         <View style={styles.cardView}>
             <Image style={styles.image} source={{ uri: item }} />
-            <View style={styles.textView}>
-            </View>
         </View>
     )
 }

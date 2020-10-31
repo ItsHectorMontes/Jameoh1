@@ -1,26 +1,11 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-
-import { StyleSheet, View, ScrollView, Dimensions} from "react-native";
-
-import { Icon } from "react-native-elements";
+import React, { useState, useEffect, useCallback } from "react";
+import { StyleSheet, View, ScrollView, Image,  Text } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { firebaseApp } from "../../utils/firebase";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import ListRestaurants from "../../components/Restaurants/ListRestaurants";
 
-//promo
-
-import Restaurant from "../Restaurants/Restaurant";
-//categorias
-import RestaurantCategory from "../Restaurants/RestaurantCategory";
-import PromotionsRestaurant from "../PromotionsRestaurant";
-import { dummyDataPromos } from "../../data/DataPromos";
-//userinfo
-import UserLoggedInfo from "../Account/UserLoggedInfo";
-//search
-import Search from "../Search";
-//categori
 import AllCategories from "../../components/Categories/AllCategories";
 import Category1 from "../../components/Categories/Category1";
 import Category2 from "../../components/Categories/Category2";
@@ -32,11 +17,7 @@ import Category7 from "../../components/Categories/Category7";
 import Category8 from "../../components/Categories/Category8";
 import Category9 from "../../components/Categories/Category9";
 
-
-
-
 const db = firebase.firestore(firebaseApp);
-const screenWidth = Dimensions.get("window").width;
 
 export default function Restaurants(props) {
   const { navigation } = props;
@@ -111,44 +92,51 @@ export default function Restaurants(props) {
   };
 
   return (
-    <ScrollView style={styles.viewBody} showsVerticalScrollIndicator={false}>
-      <UserLoggedInfo/>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <AllCategories setSelectedId={()=>setSelectedId(null)} />
-        <Category1 setSelectedId={setSelectedId}/>
-        <Category2 setSelectedId={setSelectedId}/>
-        <Category3 setSelectedId={setSelectedId}/>
-        <Category4 setSelectedId={setSelectedId}/>
-        <Category5 setSelectedId={setSelectedId}/>
-        <Category6 setSelectedId={setSelectedId}/>
-        <Category7 setSelectedId={setSelectedId}/>
-        <Category8 setSelectedId={setSelectedId}/>
-        <Category9 setSelectedId={setSelectedId}/>
-      </ScrollView>
-      <ListRestaurants
-        restaurants={restaurants}
-        handleLoadMore={handleLoadMore}
-        isLoading={isLoading}
-        selectedId={selectedId}
-      />
-      {/* {user && (
-        <Icon
-          reverse
-          type="material-community"
-          name="plus"
-          color="#541204"
-          containerStyle={styles.btnContainer}
-          onPress={() => navigation.navigate("add-restaurant")}
+    <>
+      <View style={styles.bgContainer}>
+        <Image source={require('../../../assets/FondoRestaurantes.png')} style={styles.bg} /> 
+      </View>
+      <ScrollView style={styles.viewBody} showsVerticalScrollIndicator={false}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <AllCategories setSelectedId={()=>setSelectedId(null)} />
+          <Category1 setSelectedId={setSelectedId}/>
+          <Category2 setSelectedId={setSelectedId}/>
+          <Category3 setSelectedId={setSelectedId}/>
+          <Category4 setSelectedId={setSelectedId}/>
+          <Category5 setSelectedId={setSelectedId}/>
+          <Category6 setSelectedId={setSelectedId}/>
+          <Category7 setSelectedId={setSelectedId}/>
+          <Category8 setSelectedId={setSelectedId}/>
+          <Category9 setSelectedId={setSelectedId}/>
+        </ScrollView>
+        <View>
+          <Text style={{fontSize: 28, color: '#00000077'}}>Restaurantes</Text>
+        </View>
+        <ListRestaurants
+          restaurants={restaurants}
+          handleLoadMore={handleLoadMore}
+          isLoading={isLoading}
+          selectedId={selectedId}
         />
-      )} */}
-    </ScrollView>
+        {/* {user && (
+          <Icon
+            reverse
+            type="material-community"
+            name="plus"
+            color="#541204"
+            containerStyle={styles.btnContainer}
+            onPress={() => navigation.navigate("add-restaurant")}
+          />
+        )} */}
+      </ScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   viewBody: {
+    ...StyleSheet.absoluteFillObject,
     flex: 1,
-    backgroundColor: "#fff",
   },
   btnContainer: {
     position: "absolute",
@@ -162,4 +150,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
 
   },
+  bgContainer: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bg: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    resizeMode: 'stretch',
+    borderWidth: 2,
+  }
 });
